@@ -748,18 +748,34 @@ const QS_PER_ATTEMPT_DEFAULT = 71;
 
 const QUESTION_BANK = [
 
-{id:"template-0001",category:"Template",
-q:"What's the speed limit for the car towing the caravan on this road?",
-video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2044_MASTER_220218_1.mp4",
-choices:[
-"60mph",
-"70mph",
-"50mph",
-"40mph"
-],
-correct:0,
-explain:"The speed limit when you're towing a caravan or trailer is lower than the limit for a car that's not towing. This is mainly because the increased length and weight of the combination make it more difficult to control. When you're towing a caravan or trailer, you should take your time with any manoeuvres. You should also allow more time for slowing and stopping.",
-fp:"this is a unique fingerprint example for the question"},
+{
+  type:"video",
+  id:"template-0001-video",
+  category:"Template",
+  q:"Watch the clip carefully, then press Next.",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2044_MASTER_220218_1.mp4",
+  choices:[],
+  image:"",
+  explain:"",
+  fp:"template-0001-video"
+},
+
+{
+  type:"question",
+  id:"template-0001-q1",
+  category:"Template",
+  q:"What's the speed limit for the car towing the caravan on this road?",
+  choices:[
+    "60mph",
+    "70mph",
+    "50mph",
+    "40mph"
+  ],
+  correct:0,
+  explain:"The speed limit when you're towing a caravan or trailer is lower than the limit for a car that's not towing. The extra weight and length make it harder to control and increase stopping distances.",
+  image:"",
+  fp:"template-0001-q1"
+},
 
 {id:"template-0001",category:"Template",
 q:"Watch the clip. What should the driver do next?",
