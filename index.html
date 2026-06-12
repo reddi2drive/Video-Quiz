@@ -1287,7 +1287,7 @@ function loadStats(){
 
 function buildAttempt(){
   qsPerAttempt = Math.min(qsPerAttempt, QUESTION_BANK.length);
-  const pool = shuffle(QUESTION_BANK);
+  const pool = QUESTION_BANK;
   const selected = pool.slice(0, qsPerAttempt).map(q => {
     // Support BOTH:
     // - choices: ["Text A","Text B",...]
