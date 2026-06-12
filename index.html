@@ -1323,6 +1323,20 @@ function render(){
   setVideo(q.video || "");
 
   answers.innerHTML = "";
+	if(q.type === "video"){
+  answers.style.display = "none";
+  feedback.style.display = "none";
+
+  currentSelected = 0;
+  picked[idx] = { choiceIndex: 0, videoStep: true };
+
+  submitBtn.disabled = false;
+  setSubmitButton("next");
+
+  return;
+}
+
+answers.style.display = "";
   feedback.style.display = "none"; // no per-question feedback
   feedback.className = "feedback";
 
