@@ -750,14 +750,14 @@ const QUESTION_BANK = [
 
 {
   type:"video",
-  id:"template-0001-video",
+  id:"dvsa-video-001",
   category:"Template",
   q:"Watch the clip carefully, then press Next.",
   video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2044_MASTER_220218_1.mp4",
   choices:[],
   image:"",
   explain:"",
-  fp:"template-0001-video"
+  fp:"R2D-DVSA-VIDEO-001"
 },
 	{
   type:"question",
@@ -822,26 +822,82 @@ const QUESTION_BANK = [
 	
 	{
   type:"video",
-  id:"dvsa-video-001",
+  id:"dvsa-video-002",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
   video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2040-Rural-Railway-3V-Final_1.mp4",
   choices:[],
   image:"",
   explain:"",
-  fp:"R2D-DVSA-VIDEO-001"
+  fp:"R2D-DVSA-VIDEO-002"
+},
+	{
+  type:"question",
+  id:"video-2040-q1",
+  category:"Video Scenario",
+
+  q:"What hazard do you need to look out for as you drive under the bridge?",
+
+  choices:[
+    "Pedestrians walking in the road",
+    "Overhanging tree branches",
+    "A narrowing of the road",
+    "The height of the bridge"
+  ],
+
+  correct:0,
+
+  explain:"Look out for warning signs as you’re driving. They'll tell you what hazards you may find ahead. For example, pedestrians, wild animals or cattle. To deal safely with any hazards in the road, be prepared to slow down or stop.",
+
+  image:"",
+
+  fp:"R2D-VIDEO-2040-Q1"
 },
 
 {
-  type:"video",
-  id:"dvsa-video-002",
+  type:"question",
+  id:"video-2040-q2",
   category:"Video Scenario",
-  q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2067_MASTER_040518_1.mp4",
-  choices:[],
+
+  q:"What's the speed limit on this road?",
+
+  choices:[
+    "30 mph",
+    "40 mph",
+    "50 mph",
+    "60 mph"
+  ],
+
+  correct:0,
+
+  explain:"If you're driving in a built-up area, the speed limit will be low. Apart from the speed limit signs where you enter the limit, look out for repeater signs reminding you of the speed limit. A speed limit's not a target - you do not have to drive as fast as the limit says you can. Keep within the limit and adapt your driving to the road situation.",
+
   image:"",
-  explain:"",
-  fp:"R2D-DVSA-VIDEO-002"
+
+  fp:"R2D-VIDEO-2040-Q2"
+},
+
+{
+  type:"question",
+  id:"video-2040-q3",
+  category:"Video Scenario",
+
+  q:"What does the single yellow line along the side of the road mean?",
+
+  choices:[
+    "Waiting restrictions apply at certain times",
+    "It marks the edge of the road",
+    "No stopping at any time",
+    "No waiting at any time"
+  ],
+
+  correct:0,
+
+  explain:"Yellow lines along the side of the road tell you that waiting restrictions apply here. If there's just one line, it means that the waiting restrictions are at certain times. There may be a yellow plate on a wall or lamppost nearby telling you what these times are. If the yellow lines are double, it means that you cannot wait there at any time.",
+
+  image:"",
+
+  fp:"R2D-VIDEO-2040-Q3"
 },
 
 {
@@ -849,7 +905,7 @@ const QUESTION_BANK = [
   id:"dvsa-video-003",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2053_MASTER_230218_1.mp4",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2067_MASTER_040518_1.mp4",
   choices:[],
   image:"",
   explain:"",
@@ -861,7 +917,7 @@ const QUESTION_BANK = [
   id:"dvsa-video-004",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2052_MASTER_280218_1.mp4",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2053_MASTER_230218_1.mp4",
   choices:[],
   image:"",
   explain:"",
@@ -873,7 +929,7 @@ const QUESTION_BANK = [
   id:"dvsa-video-005",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2070-Roundabout-Bus-Master.mp4",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2052_MASTER_280218_1.mp4",
   choices:[],
   image:"",
   explain:"",
@@ -885,7 +941,7 @@ const QUESTION_BANK = [
   id:"dvsa-video-006",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2063_MASTER_240318.mp4",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2070-Roundabout-Bus-Master.mp4",
   choices:[],
   image:"",
   explain:"",
@@ -897,7 +953,7 @@ const QUESTION_BANK = [
   id:"dvsa-video-007",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2016-Box-Junction.mp4",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/2063_MASTER_240318.mp4",
   choices:[],
   image:"",
   explain:"",
@@ -909,11 +965,23 @@ const QUESTION_BANK = [
   id:"dvsa-video-008",
   category:"Video Scenario",
   q:"Watch the clip carefully, then press Next.",
-  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2071-Loomies-4V.mp4",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2016-Box-Junction.mp4",
   choices:[],
   image:"",
   explain:"",
   fp:"R2D-DVSA-VIDEO-008"
+},
+
+{
+  type:"video",
+  id:"dvsa-video-009",
+  category:"Video Scenario",
+  q:"Watch the clip carefully, then press Next.",
+  video:"https://reddi2drive.co.uk/wp-content/uploads/2026/06/VM2071-Loomies-4V.mp4",
+  choices:[],
+  image:"",
+  explain:"",
+  fp:"R2D-DVSA-VIDEO-009"
 },
 
 {id:"template-0001",category:"Template",
