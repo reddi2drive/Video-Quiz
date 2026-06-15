@@ -495,13 +495,7 @@ body{
           <!-- ✅ EDIT ME: Question-count dropdown options
                Change the numbers/options here for each quiz (e.g. 10/25/50/Full).
                Keep value="full" for the Full option (the script uses it). -->
-          <select id="qsSelect" class="btn ghost" style="padding:6px 8px; font-weight:800; min-width:86px">
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="full">Full</option>
-          </select>
-          <span class="muted" id="qsHint" style="font-size:12px;"></span>
+          
         </div>
 <button class="btn" id="resetBestBtn" title="Clears your saved best score">Reset best</button>
       </div>
@@ -721,8 +715,8 @@ document.title = `Reddi2Drive – ${TEST_TITLE}`;
        // e.g. "Traffic Lights", "Motorways", "Signs & Markings"
 const TEST_SLUG  = "video-case-studies";    // ← CHANGE THIS (must be unique per quiz)    // e.g. "traffic-lights", "motorways", "signs"
 // Number of questions per attempt (cannot exceed QUESTION_BANK length)
-const QS_PER_ATTEMPT_DEFAULT = QUESTION_BANK.length;
-// =========================================================
+const QS_PER_ATTEMPT_DEFAULT = 36;
+	// =========================================================
 
 
 // =========================================================
@@ -2242,24 +2236,6 @@ checkForResume();
   }, { passive: false });
 })();
 
-
-
-// --- Hide question selector once the test starts; show it again for new attempts ---
-(function(){
-  const qsWrap = document.getElementById("qsWrapper");
-  if (!qsWrap) return;
-
-  const startBtn = document.getElementById("startBtn");
-  const retryBtn = document.getElementById("retryBtn");
-  const newAttemptBtn = document.getElementById("newAttemptBtn");
-
-  function hideQS(){ qsWrap.style.display = "none"; }
-  function showQS(){ qsWrap.style.display = "flex"; }
-
-  if (startBtn) startBtn.addEventListener("click", hideQS);
-  if (retryBtn) retryBtn.addEventListener("click", showQS);
-  if (newAttemptBtn) newAttemptBtn.addEventListener("click", showQS);
-})();
 </script>
   </div>
 </body>
