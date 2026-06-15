@@ -1865,7 +1865,15 @@ zoomOverlay.addEventListener("click", () => {
 function render(){
   const q = attempt[idx];
   catTag.textContent = q.category || "Category";
-  counter.textContent = `Question ${idx+1}`;
+if (q.type === "video"){
+  counter.textContent = "Video";
+} else {
+  const questionNumber = attempt
+    .slice(0, idx + 1)
+    .filter(item => item.type !== "video").length;
+
+  counter.textContent = `Question ${questionNumber}`;
+}
   qText.textContent = q.q;
 
   // Hide running score so users don't know results until the end
