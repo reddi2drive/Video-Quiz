@@ -2243,35 +2243,6 @@ checkForResume();
 })();
 
 
-// --- Question count dropdown wiring (Start screen) ---
-(function(){
-  const qsSelect = document.getElementById("qsSelect");
-  const qsHint   = document.getElementById("qsHint");
-  if (!qsSelect) return;
-
-  const full = QUESTION_BANK.length;
-
-  const fullOpt = qsSelect.querySelector('option[value="full"]');
-  if (fullOpt) fullOpt.textContent = `Full (${full})`;
-
-  // Initialise from storage/default (loadStats also does this, but we keep it robust)
-  const saved = localStorage.getItem(STORAGE_QS);
-  let desired = saved ? Number(saved) : QS_PER_ATTEMPT_DEFAULT;
-  if (!Number.isFinite(desired) || desired < 1) desired = QS_PER_ATTEMPT_DEFAULT;
-
-  qsPerAttempt = Math.min(desired, full);
-  qsSelect.value = (qsPerAttempt === full) ? "full" : String(qsPerAttempt);
-  if (qsHint) qsHint.textContent = `(${qsPerAttempt} per attempt)`;
-
-  qsSelect.addEventListener("change", () => {
-    const v = (qsSelect.value === "full") ? full : Number(qsSelect.value);
-    if (!Number.isFinite(v)) return;
-    qsPerAttempt = Math.min(v, full);
-    localStorage.setItem(STORAGE_QS, String(qsPerAttempt));
-    if (qsHint) qsHint.textContent = `(${qsPerAttempt} per attempt)`;
-    if (typeof loadStats === "function") loadStats();
-  });
-})();
 
 // --- Hide question selector once the test starts; show it again for new attempts ---
 (function(){
