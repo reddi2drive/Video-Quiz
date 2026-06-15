@@ -488,17 +488,9 @@ body{
 
       <!-- NOTE (R2D): Start screen buttons (text + visibility can be changed here) -->
       <div class="actions">
-        <button class="btn primary" id="startBtn">Start test</button>
-        
-        <!-- Question count selector (inline) -->
-    
-          <!-- ✅ EDIT ME: Question-count dropdown options
-               Change the numbers/options here for each quiz (e.g. 10/25/50/Full).
-               Keep value="full" for the Full option (the script uses it). -->
-          
-        </div>
-<button class="btn" id="resetBestBtn" title="Clears your saved best score">Reset best</button>
-      </div>
+  <button class="btn primary" id="startBtn">Start test</button>
+  <button class="btn" id="resetBestBtn" title="Clears your saved best score">Reset best</button>
+</div>
 
       <p class="small" style="margin-top:10px">
         UK guidance: always follow signs/markings and local rules for the topic you’re testing.
@@ -1573,11 +1565,11 @@ function r2dSaveMasteryFromAttempt(){
   }
 
   // Count mastered across the FULL bank (not just this attempt)
-  const total = QUESTION_BANK.length;
+const total = QUESTION_BANK.filter(q => q.type !== "video").length;
   let mastered = 0;
   for (const q of QUESTION_BANK){
-    if (q && q.id && map[q.id]) mastered++;
-  }
+  if (q && q.type !== "video" && q.id && map[q.id]) mastered++;
+}
 
   localStorage.setItem(R2D_MASTERY_MAP_KEY, JSON.stringify(map));
   localStorage.setItem(R2D_MASTERY_STATS_KEY, JSON.stringify({
@@ -1783,14 +1775,15 @@ function loadStats(){
   let desired = saved ? Number(saved) : QS_PER_ATTEMPT_DEFAULT;
   if (!Number.isFinite(desired) || desired < 1) desired = QS_PER_ATTEMPT_DEFAULT;
 
-  qsPerAttempt = Math.min(desired, QUESTION_BANK.length);
+qsPerAttempt = QUESTION_BANK.length;
+const scoreTotal = QUESTION_BANK.filter(q => q.type !== "video").length;
 
   const best = Number(localStorage.getItem(STORAGE_BEST) || 0);
   const last = Number(localStorage.getItem(`r2d_${TEST_SLUG}_last`) || 0);
 
-  bestScore.textContent = best ? `${best} / ${qsPerAttempt}` : "—";
-  lastScore.textContent = last ? `${last} / ${qsPerAttempt}` : "—";
-
+  bestScore.textContent = best ? `${best} / ${scoreTotal}` : "—";
+lastScore.textContent = last ? `${last} / ${scoreTotal}` : "—";
+	
   // Sync dropdown UI (start screen)
   const qsSelect = document.getElementById("qsSelect");
   const qsHint   = document.getElementById("qsHint");
@@ -1892,7 +1885,8 @@ function render(){
   feedback.style.display = "none";
 
   currentSelected = 0;
-  picked[idx] = { choiceIndex: 0, videoStep: true };
+ picked[idx] = { choiceIndex: 0, videoStep: true };
+saveAttempt();
 
   submitBtn.disabled = false;
   setSubmitButton("next");
@@ -1977,11 +1971,11 @@ function submitCurrent(){
 }
 
 function finish(){
-  const total = attempt.length;
+  const total = attempt.filter(q => q.type !== "video").length;
 
-  // Calculate score only at the end (no feedback during the quiz)
   score = picked.reduce((s, p, i) => {
     if (!p) return s;
+    if (attempt[i].type === "video") return s;
     return s + (p.choiceIndex === attempt[i].correct ? 1 : 0);
   }, 0);
 
@@ -2049,14 +2043,16 @@ localStorage.setItem(`r2d_${TEST_SLUG}_last`, String(score));
   return `<strong>${escapeHtml(String(choice))}</strong>`;
 }
 
-function buildReview(filter = 'all'){
+	function buildReview(filter = 'all'){
   reviewList.innerHTML = "";
   let shown = 0;
 
   attempt.forEach((q, i) => {
+    if (q.type === "video") return;
+
     const p = picked[i];
-  const you = p ? renderChoice(q.choices[p.choiceIndex]) : "—";
-const correct = renderChoice(q.choices[q.correct]);
+    const you = p ? renderChoice(q.choices[p.choiceIndex]) : "—";
+    const correct = renderChoice(q.choices[q.correct]);
     const ok = p ? (p.choiceIndex === q.correct) : false;
 
     if (filter === "wrong" && ok) return;
@@ -2074,8 +2070,8 @@ const correct = renderChoice(q.choices[q.correct]);
       </div>
       ${q.image ? `<img class="q-image review-image${q.largeImage ? " large" : ""}${q.extraLargeImage ? " xlarge" : ""}" alt="Question visual" src="${escapeHtml(q.image)}">` : ""}
       <div class="small" style="margin-top:8px">
-      <div><span class="muted">You chose:</span> ${you}</div>
-<div><span class="muted">Correct:</span> ${correct}</div>
+        <div><span class="muted">You chose:</span> ${you}</div>
+        <div><span class="muted">Correct:</span> ${correct}</div>
       </div>
       <div class="hint">${escapeHtml(q.explain || "")}</div>
     `;
@@ -2085,18 +2081,18 @@ const correct = renderChoice(q.choices[q.correct]);
   if (reviewCount) reviewCount.textContent = `${shown} shown`;
 }
 
-startBtn.addEventListener("click", () => {
+	startBtn.addEventListener("click", () => {
   loadStats();
   if (checkForResume()) return;
   buildAttempt();
   show(quizScreen);
   render();
 });
+
 resetBestBtn.addEventListener("click", () => {
   localStorage.removeItem(STORAGE_BEST);
   loadStats();
 });
-
 
 function goNext(){
   // must submit before moving on
