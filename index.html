@@ -491,8 +491,7 @@ body{
         <button class="btn primary" id="startBtn">Start test</button>
         
         <!-- Question count selector (inline) -->
-        <div class="pill" id="qsWrapper" style="display:flex; align-items:center; gap:6px; padding:6px 10px">
-          <span class="muted" style="font-size:12px; font-weight:800;">Questions</span>
+    
           <!-- ✅ EDIT ME: Question-count dropdown options
                Change the numbers/options here for each quiz (e.g. 10/25/50/Full).
                Keep value="full" for the Full option (the script uses it). -->
@@ -722,7 +721,7 @@ document.title = `Reddi2Drive – ${TEST_TITLE}`;
        // e.g. "Traffic Lights", "Motorways", "Signs & Markings"
 const TEST_SLUG  = "video-case-studies";    // ← CHANGE THIS (must be unique per quiz)    // e.g. "traffic-lights", "motorways", "signs"
 // Number of questions per attempt (cannot exceed QUESTION_BANK length)
-const QS_PER_ATTEMPT_DEFAULT = 36;
+const QS_PER_ATTEMPT_DEFAULT = QUESTION_BANK.length;
 // =========================================================
 
 
@@ -1813,7 +1812,7 @@ function loadStats(){
 }
 
 function buildAttempt(){
-  qsPerAttempt = Math.min(qsPerAttempt, QUESTION_BANK.length);
+qsPerAttempt = QUESTION_BANK.length;
   const pool = QUESTION_BANK;
   const selected = pool.slice(0, qsPerAttempt).map(q => {
     // Support BOTH:
